@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aire-acondicionado-y-confort</title>
+    <script type="module" crossorigin src="/assets/index-V8EjN32B.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/chunk-B3K2TuZy.js">
+    <link rel="modulepreload" crossorigin href="/assets/typeof-DmQ5kzpc.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BXfebU5_.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  <!-- AIRE_ADMIN_LOCK_START -->
+<style>
+  #aire-admin-lock {
+    position: fixed;
+    inset: 0;
+    z-index: 1000000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background:
+      radial-gradient(circle at top, rgba(42,119,255,.20), transparent 35%),
+      rgba(3,10,24,.82);
+    backdrop-filter: blur(8px);
+  }
+
+  #aire-admin-lock.aire-show {
+    display: flex;
+  }
+
+  .aire-admin-card {
+    width: min(92vw, 420px);
+    border-radius: 24px;
+    padding: 22px;
+    color: #fff;
+    background: linear-gradient(180deg, #0d1b3d 0%, #081224 100%);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.08);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .aire-admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: #cfe4ff;
+    background: rgba(46,120,255,.18);
+    margin-bottom: 14px;
+  }
+
+  .aire-admin-title {
+    margin: 0 0 8px;
+    font-size: 28px;
+    line-height: 1.1;
+    font-weight: 900;
+  }
+
+  .aire-admin-sub {
+    margin: 0 0 18px;
+    color: rgba(255,255,255,.78);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .aire-admin-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #d8e6ff;
+  }
+
+  .aire-admin-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.08);
+    color: white;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: .35em;
+    outline: none;
+    margin-bottom: 12px;
+  }
+
+  .aire-admin-input:focus {
+    border-color: rgba(76,151,255,.8);
+    box-shadow: 0 0 0 4px rgba(35,118,255,.18);
+  }
+
+  .aire-admin-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .aire-btn {
+    border: 0;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .aire-btn-primary {
+    color: white;
+    background: linear-gradient(135deg,#2a77ff 0%, #16b3ff 100%);
+  }
+
+  .aire-btn-secondary {
+    color: #dbe8ff;
+    background: rgba(255,255,255,.10);
+  }
+
+  .aire-admin-error {
+    min-height: 20px;
+    margin-top: 8px;
+    color: #ffb4b4;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .aire-admin-help {
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,.55);
+    line-height: 1.4;
+  }
+
+  #aire-admin-logout {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 14px;
+    padding: 12px 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    background: linear-gradient(135deg,#ef4444 0%, #dc2626 100%);
+    box-shadow: 0 14px 32px rgba(0,0,0,.28);
+  }
+
+  #aire-admin-logout.aire-show {
+    display: inline-flex;
+  }
+
+  @media (max-width: 640px) {
+    #aire-admin-logout {
+      top: auto;
+      bottom: 16px;
+      right: 16px;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<div id="aire-admin-lock" aria-hidden="true">
+  <div class="aire-admin-card">
+    <div class="aire-admin-badge">🔒 Panel protegido</div>
+    <h2 class="aire-admin-title">Acceso administrador</h2>
+    <p class="aire-admin-sub">
+      Esta parte de la app es privada. Ingresa tu PIN para entrar al panel.
+    </p>
+
+    <label class="aire-admin-label" for="aire-admin-pin">PIN</label>
+    <input
+      id="aire-admin-pin"
+      class="aire-admin-input"
+      type="password"
+      inputmode="numeric"
+      autocomplete="off"
+      maxlength="6"
+      placeholder="••••"
+    />
+
+    <div class="aire-admin-actions">
+      <button id="aire-admin-enter" class="aire-btn aire-btn-primary">Entrar</button>
+      <button id="aire-admin-public" class="aire-btn aire-btn-secondary">Ir a vista pública</button>
+    </div>
+
+    <div id="aire-admin-error" class="aire-admin-error"></div>
+    <div class="aire-admin-help">
+      PIN por defecto: <b>4321</b>
+    </div>
+  </div>
+</div>
+
+<button id="aire-admin-logout" type="button">⛔ Cerrar sesión</button>
+
+<script>
+(function () {
+  var ADMIN_PIN = "4321";
+  var SESSION_KEY = "aire_admin_unlock_ok_v2";
+
+  var lock = document.getElementById("aire-admin-lock");
+  var pinInput = document.getElementById("aire-admin-pin");
+  var enterBtn = document.getElementById("aire-admin-enter");
+  var publicBtn = document.getElementById("aire-admin-public");
+  var errorBox = document.getElementById("aire-admin-error");
+  var logoutBtn = document.getElementById("aire-admin-logout");
+
+  if (!lock || !pinInput || !enterBtn || !publicBtn || !errorBox || !logoutBtn) return;
+
+  function getHash() {
+    return window.location.hash || "#/";
+  }
+
+  function isPublicRoute() {
+    return getHash().indexOf("#/public/") === 0;
+  }
+
+  function isUnlocked() {
+    try {
+      return sessionStorage.getItem(SESSION_KEY) === "ok";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setUnlocked(val) {
+    try {
+      if (val) {
+        sessionStorage.setItem(SESSION_KEY, "ok");
+      } else {
+        sessionStorage.removeItem(SESSION_KEY);
+      }
+    } catch (e) {}
+  }
+
+  function updateLogoutButton() {
+    if (!isPublicRoute() && isUnlocked()) {
+      logoutBtn.classList.add("aire-show");
+    } else {
+      logoutBtn.classList.remove("aire-show");
+    }
+  }
+
+  function showLock() {
+    lock.classList.add("aire-show");
+    lock.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    updateLogoutButton();
+    setTimeout(function () {
+      try { pinInput.focus(); } catch (e) {}
+    }, 60);
+  }
+
+  function hideLock() {
+    lock.classList.remove("aire-show");
+    lock.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    errorBox.textContent = "";
+    pinInput.value = "";
+    updateLogoutButton();
+  }
+
+  function enforceLock() {
+    if (isPublicRoute()) {
+      hideLock();
+      return;
+    }
+
+    if (isUnlocked()) {
+      hideLock();
+      return;
+    }
+
+    showLock();
+  }
+
+  enterBtn.addEventListener("click", function () {
+    var pin = (pinInput.value || "").trim();
+    if (pin === ADMIN_PIN) {
+      setUnlocked(true);
+      hideLock();
+    } else {
+      errorBox.textContent = "PIN incorrecto.";
+      try {
+        pinInput.focus();
+        pinInput.select();
+      } catch (e) {}
+    }
+  });
+
+  pinInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      enterBtn.click();
+    }
+  });
+
+  publicBtn.addEventListener("click", function () {
+    var current = getHash();
+    var m = current.match(/#\/public\/([A-Z0-9_-]+)/i);
+    if (m) {
+      window.location.hash = "#/public/" + m[1];
+    } else {
+      errorBox.textContent = "No hay una vista pública abierta.";
+    }
+  });
+
+  logoutBtn.addEventListener("click", function () {
+    setUnlocked(false);
+    window.location.hash = "#/";
+    window.location.reload();
+  });
+
+  window.addEventListener("hashchange", enforceLock);
+  window.addEventListener("load", enforceLock);
+  document.addEventListener("DOMContentLoaded", enforceLock);
+  setTimeout(enforceLock, 120);
+})();
+</script>
+<!-- AIRE_ADMIN_LOCK_END -->
+<!-- AIRE_BACKUP_TOGGLE_START -->
+<style>
+  #aire-backup-fab {
+    position: fixed;
+    right: 18px;
+    bottom: 92px;
+    z-index: 999999;
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(135deg,#1e63ff 0%,#11b8d8 100%);
+    box-shadow: 0 14px 34px rgba(0,0,0,.28);
+    transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  }
+
+  #aire-backup-fab:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 18px 38px rgba(0,0,0,.33);
+  }
+
+  #aire-backup-fab svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+  }
+
+  #aire-backup-fab .aire-tip {
+    position: absolute;
+    right: 68px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    padding: 8px 11px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(8,18,38,.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease;
+  }
+
+  #aire-backup-fab:hover .aire-tip {
+    opacity: 1;
+  }
+
+  .aire-backup-panel-patched {
+    position: fixed !important;
+    right: 18px !important;
+    bottom: 156px !important;
+    left: auto !important;
+    z-index: 999998 !important;
+    max-width: 220px !important;
+    min-width: 190px !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    box-shadow: 0 22px 44px rgba(0,0,0,.35) !important;
+  }
+
+  .aire-backup-panel-patched .aire-backup-close {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    color: white;
+    background: rgba(0,0,0,.35);
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    padding: 0;
+  }
+
+  @media (max-width: 640px) {
+    #aire-backup-fab {
+      right: 12px;
+      bottom: 82px;
+      width: 52px;
+      height: 52px;
+    }
+
+    #aire-backup-fab .aire-tip {
+      display: none;
+    }
+
+    .aire-backup-panel-patched {
+      right: 12px !important;
+      bottom: 144px !important;
+      max-width: 190px !important;
+      min-width: 168px !important;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  function isPublicRoute() {
+    return (window.location.hash || "").indexOf("#/public/") === 0;
+  }
+
+  function makeFab() {
+    let fab = document.getElementById("aire-backup-fab");
+    if (!fab) {
+      fab = document.createElement("button");
+      fab.id = "aire-backup-fab";
+      fab.type = "button";
+      fab.setAttribute("aria-label", "Abrir respaldo rápido");
+      fab.innerHTML = `
+        <span class="aire-tip">Respaldo rápido</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3L4 7V12C4 17 7.4 21.3 12 22C16.6 21.3 20 17 20 12V7L12 3Z" fill="white" fill-opacity="0.20"/>
+          <path d="M12 3L4 7V12C4 17 7.4 21.3 12 22C16.6 21.3 20 17 20 12V7L12 3Z" stroke="white" stroke-width="1.6"/>
+          <path d="M9 12L11 14L15.5 9.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      `;
+      document.body.appendChild(fab);
+    }
+    return fab;
+  }
+
+  function findBackupPanel() {
+    const all = Array.from(document.querySelectorAll("div,section,aside"));
+    for (const el of all) {
+      const txt = (el.innerText || "").trim();
+      if (!txt) continue;
+      if (txt.includes("Respaldo rápido") && txt.includes("Exportar")) {
+        return el;
+      }
+    }
+    return null;
+  }
+
+  function hidePublicStuff(panel, fab) {
+    if (isPublicRoute()) {
+      if (panel) panel.style.display = "none";
+      if (fab) fab.style.display = "none";
+      return true;
+    }
+    return false;
+  }
+
+  function patchPanel() {
+    const panel = findBackupPanel();
+    const fab = makeFab();
+
+    if (hidePublicStuff(panel, fab)) return;
+
+    if (!panel) {
+      fab.style.display = "none";
+      return;
+    }
+
+    if (!panel.dataset.aireBackupPatched) {
+      panel.dataset.aireBackupPatched = "1";
+      panel.classList.add("aire-backup-panel-patched");
+      panel.style.display = "none";
+
+      if (!panel.querySelector(".aire-backup-close")) {
+        const close = document.createElement("button");
+        close.className = "aire-backup-close";
+        close.type = "button";
+        close.innerHTML = "&times;";
+        close.title = "Cerrar";
+        close.addEventListener("click", function (e) {
+          e.stopPropagation();
+          panel.style.display = "none";
+          fab.style.display = "flex";
+        });
+        panel.appendChild(close);
+      }
+
+      fab.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (isPublicRoute()) return;
+        panel.style.display = "block";
+        fab.style.display = "none";
+      });
+
+      document.addEventListener("click", function (e) {
+        if (panel.style.display !== "none" && !panel.contains(e.target)) {
+          panel.style.display = "none";
+          if (!isPublicRoute()) fab.style.display = "flex";
+        }
+      }, true);
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && panel.style.display !== "none") {
+          panel.style.display = "none";
+          if (!isPublicRoute()) fab.style.display = "flex";
+        }
+      });
+
+      panel.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+    }
+
+    fab.style.display = "flex";
+  }
+
+  function boot() {
+    patchPanel();
+
+    const obs = new MutationObserver(function () {
+      patchPanel();
+    });
+
+    obs.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+
+    window.addEventListener("hashchange", function () {
+      setTimeout(patchPanel, 90);
+    });
+
+    window.addEventListener("load", function () {
+      setTimeout(patchPanel, 120);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+<!-- AIRE_BACKUP_TOGGLE_END -->
+</body>
+</html>
